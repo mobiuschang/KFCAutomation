@@ -37,4 +37,12 @@ public class KFCJobDetails {
 	public void clickApplyButton() {
 		driver.findElement(By.xpath("//*[@id=\"page\"]/div/div[2]/div[2]/div[3]/a")).click();
 	}
+	
+	/**
+	 * Enter user name in the login page
+	 * @param username
+	 */
+	public void enterUsername(String usernames) {
+	    driver.findElement((By.id("username"))).sendKeys(usernames);
+	}
 }

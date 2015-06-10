@@ -31,9 +31,12 @@ public class KFCJobDetailsTest {
 		driver.manage().window().setSize(new Dimension(432,595));
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.get("http://kfc.staging.jibeapply.com/");
+		
 		KFCHomePage = new KFCHomeMobile(driver);
 		KFCJobDetailsPage = new KFCJobDetails(driver);
+		
 		KFCHomePage.searchJobKeywordLocation("general manager", "North Carolina");
+		KFCHomePage.clickOnFirstJob();
 	}
 	
 	@After
@@ -43,16 +46,16 @@ public class KFCJobDetailsTest {
 	
 	@Test
 	public void JobDetailsPageCorrect() {
-		KFCHomePage.clickOnFirstJob();
 		KFCJobDetailsPage = new KFCJobDetails(driver);
 		assertTrue(KFCJobDetailsPage.getPageTexts().contains("Job Description"));
 	}
 	
 	@Test
 	public void ApplyFromJobDetailsSuccess() throws InterruptedException {
-		KFCHomePage.clickOnFirstJob();
 		KFCJobDetailsPage.clickApplyButton();
 		Thread.sleep(5000);
 		assertTrue(KFCJobDetailsPage.getPageTexts().contains("Login"));
 	}
+	
+	
 }
